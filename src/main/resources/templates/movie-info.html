@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Movie-info</title>
+    <link href="../static/css/style.css" th:href="@{/css/style.css}" rel="stylesheet" />
+</head>
+<body>
+
+<h1>Movie info</h1>
+<table>
+    <tr >
+        <th th:text="'Title'"></th>
+        <th th:text="'Type'">...</th>
+        <th th:text="'Year'">...</th>
+        <th th:text="'Actors'">...</th>
+        <th th:text="'Poster'">...</th>
+        <th th:text="'Awards'">...</th>
+        <th th:text="'BoxOffice'">...</th>
+        <th th:text="'Country'">...</th>
+        <th th:text="'Director'">...</th>
+        <th th:text="'DVD'">...</th>
+        <th th:text="'Genre'">...</th>
+        <th th:text="'Plot'">...</th>
+        <th th:text="'ImdbVotes'">...</th>
+        <th th:text="'Language'">...</th>
+        <th th:text="'Website'">...</th>
+        <th th:text="'Ratings'">...</th>
+    </tr>
+    <tr>
+        <td th:text="${movie.getTitle()}">...</td>
+        <td th:text="${movie.getType()}">...</td>
+        <td th:text="${movie.getYear()}">...</td>
+        <td th:text="${movie.getActors()}">...</td>
+        <td ><img th:src="@{${movie.getPoster()}}"/></td>
+        <td th:text="${movie.getAwards()}">...</td>
+        <td th:text="${movie.getBoxOffice()}">...</td>
+        <td th:text="${movie.getCountry()}">...</td>
+        <td th:text="${movie.getDirector()}">...</td>
+        <td th:text="${movie.getDVD()}">...</td>
+        <td th:text="${movie.getGenre()}">...</td>
+        <td th:text="${movie.getPlot()}">...</td>
+        <td th:text="${movie.getImdbVotes()}">...</td>
+        <td th:text="${movie.getLanguage()}">...</td>
+        <td th:text="${movie.getWebsite()}">...</td>
+        <td th:text="${movie.getRatings()}">...</td>
+
+    </tr>
+
+</table>
+
+<a href="#" th:href="@{/}">Powrót do wyszukiwania</a>
+
+</body>
+</html>

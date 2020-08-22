@@ -2,20 +2,27 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Home</title>
+    <title>Search result</title>
+    <link href="../static/css/style.css" th:href="@{/css/style.css}" rel="stylesheet" />
 </head>
 <body>
 
 <h1>Result of search</h1>
 <table>
-    <th:block th:each="li : ${list}">
-        <tr>
-            <td th:text="${li}">...</td>
-        </tr>
-<!--        <tr>-->
-<!--            <td colspan="2" th:text="${user.address}">...</td>-->
-<!--        </tr>-->
-    </th:block>
+    <tr >
+        <th th:text="'Title'"></th>
+        <th th:text="'Type'">...</th>
+        <th th:text="'Year'">...</th>
+        <th th:text="'Poster'">...</th>
+    </tr>
+    <tr th:each="movie : ${movies}">
+        <td th:text="${movie.getTitle()}">...</td>
+        <td th:text="${movie.getType()}">...</td>
+        <td th:text="${movie.getYear()}">...</td>
+        <td ><img th:src="@{${movie.getPoster()}}"/></td>
+        <td> <a th:href="@{/{id}(id =${movie.getImdbID()})}"/> LINK </td>
+    </tr>
+
 </table>
 
 <a href="#" th:href="@{/}">Powrót do wyszukiwania</a>

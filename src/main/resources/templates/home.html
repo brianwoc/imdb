@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Home</title>
+    <link th:href="@{/static/css/style.css}" rel="stylesheet" />
 </head>
 <body>
 
-<h1 th:text="${'QUICK MOVIE SEARCH USING IMDB API'}">Test</h1>
+<h1 th:text="${'QUICK MOVIE SEARCH USING IMDB API'}">QUICK MOVIE SEARCH USING IMDB API</h1>
 <form action="#" th:action="@{/search}"  method="post">
     <p>Enter movie title</p>
     <input name="title" type="text"  />
@@ -21,6 +22,7 @@
         <option value="movie">movie</option>
         <option value="series">series</option>
         <option value="episode">episode</option>
+        <option value="game">game</option>
     </select>
 
     <br>
