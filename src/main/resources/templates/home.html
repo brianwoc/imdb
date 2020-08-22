@@ -6,9 +6,25 @@
 </head>
 <body>
 
-<h1 th:text="${'TEST'}">Test</h1>
+<h1 th:text="${'QUICK MOVIE SEARCH USING IMDB API'}">Test</h1>
 <form action="#" th:action="@{/search}"  method="post">
+    <p>Enter movie title</p>
     <input name="title" type="text"  />
+    <p>Enter year of production</p>
+    <input name="year" type="text"  />
+    <p>Enter how many page you want to see</p>
+    <input name="page" type="text"  />
+    <br>
+    <p>Enter the type of production</p>
+
+    <select id="type" name="type">
+        <option value="movie">movie</option>
+        <option value="series">series</option>
+        <option value="episode">episode</option>
+    </select>
+
+    <br>
+    <br>
     <input type="submit" />
 </form>
 

@@ -68,4 +68,5 @@ public class Search {
         this.additionalProperties.put(name, value);
     }
 
+
 }

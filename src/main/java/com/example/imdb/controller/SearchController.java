@@ -39,10 +39,18 @@ public class SearchController {
     }
 
     @PostMapping("/search")
-    public String search(@RequestParam(name = "title", required = true) String title, Model model) throws MalformedURLException, URISyntaxException {
+    public String search(@RequestParam(name = "title", required = true) String title,
+                         @RequestParam(name = "year", required = false) String year,
+                         @RequestParam(name = "page", required = false) String page,
+                         @RequestParam(name = "type", required = false) String type,
+                         Model model) throws MalformedURLException, URISyntaxException {
 
         URLBuilder URL = createrURL();
         URL.addParameter("s", title);
+        URL.addParameter("y", year);
+        URL.addParameter("page", page);
+        URL.addParameter("type", type);
+        System.out.println(URL.getURL());
         Search search = restTemplate.getForObject(URL.getURL(),Search.class);
         List<String> list = new ArrayList<>();
         for (int i = 0; i < search.getSearch().size(); i++) {
@@ -50,8 +58,8 @@ public class SearchController {
 
         }
         model.addAttribute("list", list);
-
         model.addAttribute("search", search);
+        search.getSearch().stream().forEach(x -> System.out.println(x));
         return "search";
     }
 }
