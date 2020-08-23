@@ -2,6 +2,7 @@ package com.example.imdb.controller;
 
 import com.example.imdb.json.Movie;
 import com.example.imdb.json.Search;
+import com.example.imdb.json.Search_;
 import com.example.imdb.json.URLBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -47,18 +48,26 @@ public class SearchController {
                          @RequestParam(name = "page", required = false) String page,
                          @RequestParam(name = "type", required = false) String type,
                          Model model) throws MalformedURLException, URISyntaxException {
+        List<Search_> movies = new ArrayList<>();
+        for (int i = 1; i <Integer.parseInt(page); i++) {
+            URLBuilder URL = createrURL();
+            URL.addParameter("s", title);
+            URL.addParameter("y", year);
+            URL.addParameter("page", String.valueOf(i));
+            URL.addParameter("type", type);
+            System.out.println(URL.getURL());
+            Search search = restTemplate.getForObject(URL.getURL(), Search.class);
+            search.getSearch().stream().forEach(x -> movies.add(x));
+            int totalResult = Integer.parseInt(search.getTotalResults());
+            if (totalResult/10==i){
+                break;
+            }
+        }
 
-        URLBuilder URL = createrURL();
-        URL.addParameter("s", title);
-        URL.addParameter("y", year);
-        URL.addParameter("page", page);
-        URL.addParameter("type", type);
-        System.out.println(URL.getURL());
-        Search search = restTemplate.getForObject(URL.getURL(), Search.class);
 
-        model.addAttribute("movies", search.getSearch());
+        model.addAttribute("movies", movies);
 
-        search.getSearch().stream().forEach(x -> System.out.println(x));
+        movies.stream().forEach(x -> System.out.println(x));
         return "search";
     }
 
